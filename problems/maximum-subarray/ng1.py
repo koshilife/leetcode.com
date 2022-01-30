@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/maximum-subarray/
+
 # dp[i][j] = 始点iからjまでの間での部分和の最大値
 # 漸化式の定義
 # 一般化:
@@ -7,7 +9,10 @@
 #    dp[i][j] = max(dp[i][j-1], sum(nums[i,j]))
 #
 
-# https://leetcode.com/problems/maximum-subarray/
+#
+# NG: Time Limit Exceeded
+#
+
 class Solution(object):
     def maxSubArray(self, nums):
         """
