@@ -12,8 +12,7 @@ class Solution:
 
         val_dic = {}
         for i, val in enumerate(longer):
-            if val not in val_dic:
-                val_dic[val] = []
+            val_dic.setdefault(val, [])
             val_dic[val].append(i)
 
         ans = []
