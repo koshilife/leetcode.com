@@ -13,25 +13,18 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# refs: https://leetcode.com/problems/path-sum/discuss/1774185/Python-Simple-solution-or-Find-sum-of-every-possible-path
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], target_sum: int) -> bool:
-        def check(node, tmp):
-            if node:
-                if node.left:
-                    node.left.val += node.val
-                    check(node.left, tmp)
-                if node.right:
-                    node.right.val += node.val
-                    check(node.right, tmp)
-                elif not node.left:
-                    tmp.append(node.val)
-            return tmp
-
-        if target_sum in check(root, []):
-            return True
-        else:
+        def search(_node, current_sum, depth=0):
+            current_sum += _node.val
+            if current_sum == target_sum and (not _node.left and not _node.right):
+                return True
+            if _node.left and search(_node.left, current_sum, depth+1):
+                return True
+            if _node.right and search(_node.right, current_sum, depth+1):
+                return True
             return False
+        return search(root, 0) if root else False
 
 if __name__ == '__main__':
     # ex1
